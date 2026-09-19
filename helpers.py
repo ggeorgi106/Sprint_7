@@ -1,8 +1,8 @@
-import requests
+import allure
 import random
 import string
 
-from urls import CREATE_COURIER_URL
+from api.courier_api import CourierApi
 
 
 def generate_random_string(length):
@@ -18,6 +18,7 @@ def generate_courier_data():
     }
 
 
+@allure.step('Зарегистрировать нового курьера')
 def register_new_courier_and_return_login_password():
     login_pass = []
 
@@ -31,7 +32,7 @@ def register_new_courier_and_return_login_password():
         "firstName": first_name
     }
 
-    response = requests.post(CREATE_COURIER_URL, data=payload)
+    response = CourierApi.create_courier(payload)
 
     if response.status_code == 201:
         login_pass.append(login)
