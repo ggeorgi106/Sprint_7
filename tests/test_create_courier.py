@@ -38,6 +38,7 @@ class TestCreateCourier:
         courier_cleanup.append(login_response.json()["id"])
 
         assert response.status_code == 409
+        assert response.json()["message"] == "Этот логин уже используется. Попробуйте другой."
 
     @allure.title('Ошибка при создании курьера без обязательного поля')
     @pytest.mark.parametrize("missing_field", ["login", "password"])
@@ -48,3 +49,4 @@ class TestCreateCourier:
         response = CourierApi.create_courier(payload)
 
         assert response.status_code == 400
+        assert response.json()["message"] == "Недостаточно данных для создания учетной записи"

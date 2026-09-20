@@ -32,6 +32,7 @@ class TestLoginCourier:
         response = CourierApi.login_courier(payload)
 
         assert response.status_code == 400
+        assert response.json()["message"] == "Недостаточно данных для входа"
 
     @allure.title('Ошибка логина курьера с неверными учётными данными')
     @pytest.mark.parametrize("wrong_field", ["login", "password"])
@@ -46,6 +47,7 @@ class TestLoginCourier:
         response = CourierApi.login_courier(payload)
 
         assert response.status_code == 404
+        assert response.json()["message"] == "Учетная запись не найдена"
 
     @allure.title('Ошибка логина несуществующего курьера')
     def test_login_nonexistent_courier_error(self):
@@ -57,3 +59,4 @@ class TestLoginCourier:
         response = CourierApi.login_courier(payload)
 
         assert response.status_code == 404
+        assert response.json()["message"] == "Учетная запись не найдена"

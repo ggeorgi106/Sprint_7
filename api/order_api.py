@@ -19,4 +19,4 @@ class OrderApi:
     @staticmethod
     @allure.step('Отменить заказ')
     def cancel_order(track):
-        return requests.put(CANCEL_ORDER_URL, json={"track": track})
+        return requests.put(CANCEL_ORDER_URL, params={"track": track})

@@ -9,9 +9,25 @@ ORDER_DATA = {
     "comment": "Test order"
 }
 
-ORDER_COLORS = [
-    ["BLACK"],
-    ["GREY"],
-    ["BLACK", "GREY"],
-    None
+
+ORDER_DATA_WITH_BLACK_COLOR = {
+    **ORDER_DATA,
+    "color": ["BLACK"]
+}
+
+ORDER_DATA_WITH_GREY_COLOR = {
+    **ORDER_DATA,
+    "color": ["GREY"]
+}
+
+ORDER_DATA_WITH_BOTH_COLORS = {
+    **ORDER_DATA,
+    "color": ["BLACK", "GREY"]
+}
+
+ORDER_DATA_VARIANTS = [
+    ORDER_DATA_WITH_BLACK_COLOR,
+    ORDER_DATA_WITH_GREY_COLOR,
+    ORDER_DATA_WITH_BOTH_COLORS,
+    ORDER_DATA
 ]
